@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess the Calories 🤤</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            color: white;
+            border-radius: 10px;
+        }
+        
+        .nav {
+            background: #333;
+            padding: 15px 0;
+            text-align: center;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+        
+        .nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            margin: 0 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        
+        .nav a:hover {
+            background-color: #555;
+        }
+        
+        .nav a.active {
+            background-color: #4ecdc4;
+        }
+        
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        h2 {
+            color: #333;
+            border-bottom: 3px solid #4ecdc4;
+            padding-bottom: 10px;
+            margin-top: 40px;
+        }
+        
+        h3 {
+            color: #555;
+            margin-top: 30px;
+        }
+        
+        .content {
+            padding: 20px 0;
+        }
+        
+        .visualization {
+            text-align: center;
+            margin: 30px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border: 1px solid #e9ecef;
+        }
+        
+        .visualization iframe {
+            max-width: 100%;
+            height: 600px;
+            border: none;
+            border-radius: 5px;
+        }
+        
+        .highlight {
+            background: linear-gradient(120deg, #a8edea 0%, #fed6e3 100%);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 5px solid #4ecdc4;
+        }
+        
+        .conclusion {
+            background: linear-gradient(120deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 5px solid #ff6b6b;
+        }
+        
+        .model-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .model-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-top: 4px solid #4ecdc4;
+        }
+        
+        .model-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 15px;
+        }
+        
+        .metric {
+            display: flex;
+            justify-content: space-between;
+            margin: 10px 0;
+            padding: 5px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .metric-label {
+            font-weight: bold;
+            color: #555;
+        }
+        
+        .metric-value {
+            color: #4ecdc4;
+            font-weight: bold;
+        }
+        
+        .features {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .feature-list li {
+            padding: 5px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .feature-list li:before {
+            content: "✓ ";
+            color: #4ecdc4;
+            font-weight: bold;
+        }
+        
+        .hypothesis-box {
+            background: linear-gradient(120deg, #e0c3fc 0%, #fc466b 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        
+        .hypothesis-box ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .hypothesis-box li {
+            margin: 10px 0;
+            padding: 5px 0;
+        }
+        
+        .hypothesis-box strong {
+            color: #ffd700;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Guess the Calories 🤤</h1>
+            <p><strong>Name(s)</strong>: Luran Zhang, Yunpeng Zhao</p>
+        </div>
+        
+        <nav class="nav">
+            <a href="index.html">More Sugar == More Happiness?</a>
+            <a href="guess-calories.html" class="active">Guess the Calories</a>
+        </nav>
+        
+        <div class="content">
+            <div class="highlight">
+                <h2>Framing the Problem</h2>
+                <p>For our project, our objective is to estimate the <strong>calories</strong> of each recipe through feature engineering and modeling techniques.</p>
+                
+                <div class="conclusion">
+                    <strong>Prediction problem</strong>: Predict calories of recipes
+                </div>
+                
+                <p>This is a regression problem. We selected calories as a significant variable for recipes because, if accurately predicted using other parameters, it can provide users with a straightforward guide for recipe selection. To forecast the numerical value of calories, we have opted for the DecisionTreeRegressor method to get a regression. We picked this model for our project because we are predicting a continuous numerical value and DecisionTreeRegressor can capture linear and non-linear relationships and is also robust to outliers. At this time, we know 22 other features including sugar, total fat, sodium, average rating, etc. To assess the accuracy of our model, we employ the R-squared metric instead of root mean squared error (RMSE), as it effectively evaluates the model's fit and its ability to explain the observed data. That is because RMSE cannot directly show the goodness of the model in a standard scaling (e.g. 0 to 1).</p>
+            </div>
+            
+            <h2>Baseline Model</h2>
+            <p>Our baseline model uses two features, which are published_year and total fat (PDV), to predict the calories. Among three features, one feature (total fat (PDV)) is quantitative and one feature (published_year) is categorical and ordinal. For feature engineering, we used OneHotEncoder() to encode the published_year feature. To avoid multicollinearity, we used the drop = "First" parameter, which drops the first column from the result of the encoding. Finally, we used DecisionTreeRegressor with a max_depth of 5 to fit the model and make a prediction. The hyperparameter max_depth is set to 5 randomly and we will tune it in the later section when we build our final model.</p>
+            
+            <p>We test this baseline model on both training data and testing data so we can see how our model performs on unseen data. In the end, we have an R-squared value of 0.7947850043984259 for training data and 0.6751961883585864 for testing data. Generally, We think that this is a fair model that can make an okay prediction. Since R squared value is from 0 to 1 with higher being better, our model is not the worst model we can have but there are definitely improvements that we can make to get a better model.</p>
+            
+            <div class="model-stats">
+                <div class="model-card">
+                    <div class="model-title">Baseline Model Performance</div>
+                    <div class="metric">
+                        <span class="metric-label">Training R²:</span>
+                        <span class="metric-value">0.795</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">Testing R²:</span>
+                        <span class="metric-value">0.675</span>
+                    </div>
+                    <div class="features">
+                        <strong>Features Used:</strong>
+                        <ul class="feature-list">
+                            <li>published_year (categorical)</li>
+                            <li>total fat (PDV) (quantitative)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <h2>Final Model</h2>
+            <p>In our final model, we decided to add more features that are related to calories. We decided to add sugar to the model to help improve R squared value. That is because high sugar is usually associated with high calories. Hence, we add this quantitative feature to our model. Besides sugar, we also added healthiness (whether each recipe is healthy or not based on a standard we developed using the amount of protein and carbohydrates in that recipe) as one of our features. Healthiness is a categorical binary feature (True or False: True for healthy; False for not healthy). We think this feature is good for our prediction because high calories can often be associated with "not healthy", so this feature will help us better predict the calories of a recipe. Another feature we added is the number of ingredients for each recipe. We think this feature will help with our prediction because the more ingredients a recipe has, the higher chance it will have a higher calorie value since there are many different ingredients. This is a discrete numerical value.</p>
+            
+            <p>For our final model, we still used the DecsionTreeRegressor for the reasons we stated in the baseline model section. However, to find the optimal value for the hyperparameter, max_depth, we use GridSearchCV (K-Fold Cross Validation) with a cv of 5 (5 folds) to figure out the best hyperparameter, which is 8 at the end. With a max_depth of 8 for the DecisionTreeRegressor in our model, we got an R-squared value of 0.907312276504803 for our training data, and 0.8486574302087885 for our testing data. Since a higher R-squared value means that a higher proportion of the variation in the recipe's calories can be explained by the regressors, our final model with a higher R-squared value for both training and testing data has improved from our baseline model.</p>
+            
+            <div class="model-stats">
+                <div class="model-card">
+                    <div class="model-title">Final Model Performance</div>
+                    <div class="metric">
+                        <span class="metric-label">Training R²:</span>
+                        <span class="metric-value">0.907</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">Testing R²:</span>
+                        <span class="metric-value">0.849</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">Best max_depth:</span>
+                        <span class="metric-value">8</span>
+                    </div>
+                    <div class="features">
+                        <strong>Features Used:</strong>
+                        <ul class="feature-list">
+                            <li>published_year (categorical)</li>
+                            <li>total fat (PDV) (quantitative)</li>
+                            <li>sugar (PDV) (quantitative)</li>
+                            <li>healthy (binary categorical)</li>
+                            <li>n_ingredients (discrete numerical)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <h2>Fairness Analysis</h2>
+            <p>For our fairness analysis, we will look at two different groups of recipes. One of which is recipes that were published before 2012 (old recipes), and the other is recipes published after 2012 (new recipes). The two different groups are old and new recipes. Our evaluation metric will be the R-squared values.</p>
+            
+            <div class="hypothesis-box">
+                <h3>Fairness Hypothesis Testing</h3>
+                <ul>
+                    <li><strong>Null Hypothesis</strong>: Our model is fair; the R-squared value for the old recipes and the new recipes are the same, and any differences are due to random chance.</li>
+                    <li><strong>Alternative Hypothesis</strong>: Our model is unfair; the R-squared value for old recipes is lower than the value for new recipes.</li>
+                    <li><strong>Test Statistic</strong>: Difference in the R squared value for both groups (old - new)</li>
+                    <li><strong>Significance Level</strong>: 0.05</li>
+                    <li><strong>Resulting p-value</strong>: 0.26</li>
+                </ul>
+            </div>
+            
+            <p>Since the p_value is greater than 0.05, we fail to reject the null. Thus we can answer that our model does not perform worse for old(before 2012) recipes than it does for new(after 2012) recipes based on the result of this one simulation.</p>
+            
+            <div class="visualization">
+                <iframe src="assets/fairness_test.html" width="800" height="600"></iframe>
+            </div>
+            
+            <div class="conclusion">
+                <h3>Conclusion</h3>
+                <p>We fail to reject the null hypothesis that our model is fair. Our conclusion is that there is not clear sign that our model is unfair for old and new recipes but it is not certain to say that our model is 100% fair.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 
