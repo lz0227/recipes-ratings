@@ -13,8 +13,9 @@ This project analyzes recipe data from [food.com](https://www.food.com/) to answ
 
 ```
 recipes-ratings/
-├── index.html              # Main page: "More Sugar == More Happiness?"
-├── guess-calories.html     # Machine learning page: "Guess the Calories"
+├── index.html              # Home page with project overview
+├── sugar-analysis.html     # "More Sugar == More Happiness?" analysis
+├── guess-calories.html     # "Guess the Calories" machine learning
 ├── assets/                 # Interactive visualizations and charts
 │   ├── dist_sugar_amount.html
 │   ├── avg_rating_vs_sugar_pdv_new.html
@@ -27,8 +28,11 @@ recipes-ratings/
 ## 🚀 How to Use
 
 ### Viewing the Website
-1. Open `index.html` in any modern web browser
-2. Navigate between the two main pages using the navigation bar
+1. Open `index.html` in any modern web browser (this is the home page)
+2. Navigate between the three pages using the navigation bar:
+   - **Home** - Project overview and introduction
+   - **More Sugar == More Happiness?** - Statistical analysis
+   - **Guess the Calories** - Machine learning model
 3. All visualizations are interactive and embedded directly in the pages
 
 ### No Setup Required
